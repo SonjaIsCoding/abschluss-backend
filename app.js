@@ -4,14 +4,15 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 3000;
 const connect = require("./lib/connect");
-const Note = require("./models/Note");
-const Node = require("./models/Node");
+const Note = require("./Schema/contentSchema");
+const Node = require("./Schema/treeSchema");
 
 app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => res.type("json").send({ message: "Hello World!" }));
 
+// gets all nodes
 app.get("/nodes", async (req, res) => {
   await connect();
   const nodes = (await Node.find()).map((node) => ({
@@ -22,16 +23,21 @@ app.get("/nodes", async (req, res) => {
   res.type("json").send(nodes);
 });
 
+// gets a file with a specific node(!) id
 app.get("/notes/:id", async (req, res) => {
   await connect();
   try {
     const note = await Note.findOne({ node: req.params.id });
-    res.type("json").send(note || { message: "Note not found." });
+    if (!note) {
+      return res.status(404).json({ message: "Note not found." });
+    }
+    res.type("json").send(note);
   } catch (error) {
     res.type("json").send({ message: "Note not found." });
   }
 });
 
+// adds new "file"
 app.post("/notes", async (req, res) => {
   await connect();
   const { node } = req.body;
@@ -43,6 +49,7 @@ app.post("/notes", async (req, res) => {
   res.type("json").send(note);
 });
 
+// updates content of note
 app.put("/notes/:id", async (req, res) => {
   await connect();
   const { content } = req.body;
@@ -56,6 +63,7 @@ app.put("/notes/:id", async (req, res) => {
   }
 });
 
+// adds new node
 app.post("/nodes", async (req, res) => {
   await connect();
   const { name, isBranch, parent } = req.body;
@@ -69,13 +77,35 @@ app.post("/nodes", async (req, res) => {
   res.type("json").send({ ...node._doc, id: node.id });
 });
 
-app.patch("/nodes/:id", async (req, res) => {
+// adds new Child Node to selected node
+app.post("/nodes/:id/addchild", async (req, res) => {
   await connect();
   const { nodeId } = req.body;
   const node = await Node.findById(req.params.id);
   node.children.push(nodeId);
   await node.save();
   res.type("json").send({ ...node._doc, id: node.id });
+});
+
+// removes a child node
+app.post("/nodes/:id/removechild", async (req, res) => {
+  try {
+    await connect();
+    const { nodeId } = req.body;
+    const node = await Node.findById(req.params.id);
+    console.log(node);
+    node.children = node.children.filter(
+      (child) => child.toString() !== nodeId
+    );
+    await node.save();
+    console.log(node);
+    return res.json({ msg: "ok" });
+  } catch (err) {
+    console.log(err.message);
+    return res.status(500).json({ msg: "server error" });
+  }
+
+  // node.children = node.children.filter((child) => child._id !== nodeId);
 });
 
 const server = app.listen(port, () =>

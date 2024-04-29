@@ -1,0 +1,126 @@
+[
+  {
+    "_id": {
+      "$oid": "66252b2103bb43c0d06677d4"
+    },
+    "name": "Szene 1",
+    "isBranch": false,
+    "children": [],
+    "parent": {
+      "$oid": "66252bb003bb43c0d06677d7"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66252b7f03bb43c0d06677d5"
+    },
+    "name": "Szene 2",
+    "isBranch": false,
+    "children": [],
+    "parent": {
+      "$oid": "66252bb003bb43c0d06677d7"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66252b8403bb43c0d06677d6"
+    },
+    "name": "Szene 3",
+    "isBranch": false,
+    "children": [],
+    "parent": {
+      "$oid": "66252bb003bb43c0d06677d7"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66252bb003bb43c0d06677d7"
+    },
+    "name": "Kapitel 1",
+    "isBranch": true,
+    "children": [
+      {
+        "$oid": "66252b2103bb43c0d06677d4"
+      },
+      {
+        "$oid": "66252b7f03bb43c0d06677d5"
+      },
+      {
+        "$oid": "66252b8403bb43c0d06677d6"
+      }
+    ],
+    "parent": {
+      "$oid": "66252c3a03bb43c0d06677db"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66252c3a03bb43c0d06677db"
+    },
+    "name": "Book",
+    "isBranch": true,
+    "children": [
+      {
+        "$oid": "66252bb003bb43c0d06677d7"
+      },
+      {
+        "$oid": "66252d0603bb43c0d06677e2"
+      }
+    ],
+    "parent": {
+      "$oid": "66252c5703bb43c0d06677dc"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66252c5703bb43c0d06677dc"
+    },
+    "name": "Root",
+    "isBranch": true,
+    "children": [
+      {
+        "$oid": "66252c3a03bb43c0d06677db"
+      },
+      {
+        "$oid": "66252d4703bb43c0d06677e3"
+      },
+      {
+        "$oid": "66252d5403bb43c0d06677e4"
+      }
+    ],
+    "parent": null
+  },
+  {
+    "_id": {
+      "$oid": "66252d0603bb43c0d06677e2"
+    },
+    "name": "Kapitel 2",
+    "isBranch": true,
+    "children": [],
+    "parent": {
+      "$oid": "66252c3a03bb43c0d06677db"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66252d4703bb43c0d06677e3"
+    },
+    "name": "Ideen",
+    "isBranch": true,
+    "children": [],
+    "parent": {
+      "$oid": "66252c5703bb43c0d06677dc"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66252d5403bb43c0d06677e4"
+    },
+    "name": "Charaktere",
+    "isBranch": true,
+    "children": [],
+    "parent": {
+      "$oid": "66252c5703bb43c0d06677dc"
+    }
+  }
+]

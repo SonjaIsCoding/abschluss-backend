@@ -1,0 +1,38 @@
+[
+  {
+    "_id": {
+      "$oid": "66252d7f03bb43c0d06677e6"
+    },
+    "content": "<p>Das ist der Inhalt für Szene 1!</p>",
+    "node": {
+      "$oid": "66252b2103bb43c0d06677d4"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66252dc403bb43c0d06677ec"
+    },
+    "content": "<p>Das ist der Inhalt für Szene 2!</p>",
+    "node": {
+      "$oid": "66252b7f03bb43c0d06677d5"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66252dd503bb43c0d06677ef"
+    },
+    "content": "<p>Das ist der aktualisierte Inhalt für Szene 3!</p>",
+    "node": {
+      "$oid": "66252b8403bb43c0d06677d6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "662561f921fc936aa1aafdab"
+    },
+    "content": "",
+    "node": {
+      "$oid": "662561f921fc936aa1aafda7"
+    }
+  }
+]
